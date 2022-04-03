@@ -57,6 +57,15 @@
     bottom: -24px;
 }
 
+.form_error p {
+  color: red;
+}
+
+.other_error p {
+  color: red;
+  text-align: center;
+}
+
 .links {
   display: flex;
   flex-direction: column;

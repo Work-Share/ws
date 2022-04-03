@@ -3,16 +3,32 @@ import Link from 'next/link';
 import styles from './login.module.css'
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { signIn, getSession } from 'next-auth/react';
 
 export default function login(props) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
 
+  const [loading, setLoading] = useState(true);
+  const [signUpLoading, setSignUpLoading] = useState(false);
+
   const router = useRouter();
 
-  async function submit() {
-    /*
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        router.replace('/dashboard');
+      }
+      else {
+        setLoading(false);
+      }
+    });
+  });
+
+  const submit = async (e) => {
+    e.preventDefault();
+
     if (email === "") {
       setError("Enter the email");
       return;
@@ -23,25 +39,24 @@ export default function login(props) {
       return;
     }
 
-    await login(email, pass)
-    .catch((error) => {
-      if (error.code === "auth/invalid-email") {
-        setError("Invalid email");
-      }
-      else if (error.code === "auth/user-not-found") {
-        setError("That email doesn't have an account");
-      }
-      else if (error.code === "auth/wrong-password") {
-        setError("The password is incorrect");
-      }
-      else if (error.code === "auth/too-many-requests") {
-        setError("Too many attempts, please try again later");
-      }
-      else {
-        setError("Unexpected error: " + error.message);
-      }
+    setSignUpLoading(true);
+
+    const status = await signIn('credentials', {
+      redirect: false,
+      email: email,
+      password: pass
     });
-    */
+
+    if (status.error) {
+      setError(status.error);
+    }
+    else {
+      router.push("/dashboard");
+    }
+  }
+
+  if (loading) {
+    return <h1>Loading</h1>;
   }
 
   return (
@@ -58,7 +73,7 @@ export default function login(props) {
           <Link href='#'><a>Forgot password?</a></Link>
         </div>
         <div className={styles.page}>
-          <form action="" method="get" className={styles.form_container}>
+          <form className={styles.form_container}>
             <div className={styles.form_element}>
               <input type="email" placeholder="Email" name="name" id={styles.email} onChange={e => {
                 const newEmail = e.target.value;
@@ -82,6 +97,20 @@ export default function login(props) {
           <p>{error}</p>
         </div>
       </div>
+
+      { signUpLoading ?
+          <div className="loading">
+            <p>Loading</p>
+            <div className="lds_ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        :
+        <div></div>
+      }
     </div>
   )
 }

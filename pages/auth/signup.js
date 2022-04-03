@@ -1,95 +1,128 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styles from './signup.module.css'
-import { useRouter } from 'next/router'
+import styles from './signup.module.css';
+import { useRouter } from 'next/router';
+import { getSession, signIn } from 'next-auth/react';
 
 export default function signup() {
-    const [email, setEmail] = useState("")
-    const [pass, setPass] = useState("")
-    const [passConf, setPassConf] = useState("")
-    const [hostChecked, setHostChecked] = useState("false")
-    const [renterChecked, setRenterChecked] = useState("false")
-    const [emailError, setEmailError] = useState("");
-    const [passError, setPassError] = useState("");
-    const [passConfirmError, setPassConfirmError] = useState("");
+  // Form states
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [passConf, setPassConf] = useState("");
+  const [hostChecked, setHostChecked] = useState("false");
+  const [renterChecked, setRenterChecked] = useState("false");
+  // Error states
+  const [emailError, setEmailError] = useState("");
+  const [passError, setPassError] = useState("");
+  const [passConfirmError, setPassConfirmError] = useState("");
+  const [otherError, setOtherError] = useState("");
 
-    let router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [signUpLoading, setSignUpLoading] = useState(false);
 
-/*
-    const createUser = async (email, hostChecked, renterChecked) => {
-        const res = await fetch('/api/createUserDatabase', {
-            body: JSON.stringify({
-                email: email,
-                host: hostChecked,
-                renter: renterChecked
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'POST'
+  const router = useRouter();
+
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        router.replace('/dashboard');
+      }
+      else {
+        setLoading(false);
+      }
+    });
+  });
+
+
+  // Show errors to the user
+  const setError = (errors) => {
+      setEmailError("");
+      setPassError("");
+      setPassConfirmError("");
+      setOtherError("");
+
+      for (let i = 0; i < errors.length; ++i) {
+          if (errors[i][0] === 'email') {
+              setEmailError(errors[i][1]);
+          }
+          else if (errors[i][0] === 'pass') {
+              setPassError(errors[i][1]);
+          }
+          else if (errors[i][0] === 'passConfirm') {
+              setPassConfirmError(errors[i][1]);
+          }
+          else if (errors[i][0] === 'other') {
+              setOtherError(errors[i][1]);
+          }
+      }
+  }
+
+  const submit = async (e) => {
+    e.preventDefault();
+    const errors = [];
+
+    // Validate form
+    if (!email) {
+      errors.push(['email', 'Email is required']);
+    }
+
+    if (!pass) {
+      errors.push(['pass', 'Password is required']);
+    }
+
+    if (pass !== passConf) {
+      errors.push(['passConfirm', 'Passwords do not match']);
+    }
+
+    if (renterChecked === "false") {
+      errors.push(['other', 'You must read and agree to the renter contract']);
+    }
+
+    if (errors.length > 0) {
+      setError(errors);
+      return;
+    }
+
+    setSignUpLoading(true);
+
+    // POST the data
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body:
+        JSON.stringify({
+          email: email,
+          password: pass,
+          host: hostChecked
         })
-    }
-*/
-/*
-    const setError = (error, msg) => {
-        setEmailError("");
-        setPassError("");
-        setPassConfirmError("");
+    });
 
-        for (let i = 0; i < error.length; ++i) {
-            if (error[i] == 'email') {
-                setEmailError(msg[i]);
-            }
-            else if (error[i] == 'pass') {
-                setPassError(msg[i]);
-            }
-            else if (error[i] == 'passConfirm') {
-                setPassConfirmError(msg[i]);
-            }
-        }
+    const data = await res.json();
+    if (res.status !== 200) {
+      console.log('Setting error')
+      setError([['other', data.msg]]);
     }
-*/
-    function submit() {
-      /*
-        if ((pass == passConf)) {
-            if (hostChecked === "false" && renterChecked === "false") {
-                alert("Please choose your account type")
-            }
-            else {
-                createUser(email, hostChecked, renterChecked)
-                const auth = getAuth();
-                createUserWithEmailAndPassword(auth, email, pass)
-                    .then((userCredential) => {
-                        // Signed in
-                        const user = userCredential.user;
-                        //alert("Account Created!");
-                        if (router.query.redirect) {
-                            router.push({ pathname: "login", query: { redirect: router.query.redirect } });
-                        }
-                        else {
-                            router.push("/login");
-                        }
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        if (error.message === "Firebase: Error (auth/invalid-email).") {
-                            setError(['email'], ['Invalid email']);
-                        }
-                        else if (error.message === "Firebase: Password should be at least 6 characters (auth/weak-password).") {
-                            setError(['pass', 'passConfirm'], ['Password needs to be at least 6 characters', 'Re-enter new password']);
-                        }
-                        else {
-                            alert("There was an unexpected error creating your account. Error " + error.message)
-                        }
-                    });
-            }
-        }
-        else {
-            setError(['passConfirm'], ['Passwords do not match']);
-        }
-        */
+
+    // Success, sign in and redirect
+    const status = await signIn('credentials', {
+      redirect: false,
+      email: email,
+      password: pass
+    });
+
+    if (status.error) {
+      setError([['other', status.error]]);
     }
+    else {
+      router.push("/dashboard");
+    }
+  }
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <div>
@@ -158,9 +191,28 @@ export default function signup() {
               <div className={styles.submit_container}>
                 <button onClick={submit}>Sign up</button>
               </div>
+
+              <div className={styles.other_error}>
+                  <p>{otherError}</p>
+              </div>
           </form>
         </div>
       </div>
+
+      { signUpLoading ?
+          <div className="loading">
+            <p>Loading</p>
+            <div className="lds_ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        :
+        <div></div>
+      }
+
     </div>
   )
 }
