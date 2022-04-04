@@ -1,4 +1,9 @@
 import { getSession } from 'next-auth/react';
+import styles from './dashboard.module.css';
+import Renter from '../components/dashboard/renter';
+import Host from '../components/dashboard/host';
+import { useSession } from 'next-auth/react';
+import { MongoClient } from 'mongodb';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession({ req: ctx.req });
@@ -11,15 +16,39 @@ export async function getServerSideProps(ctx) {
     };
   }
 
+  // Connect to database
+  const client = await MongoClient.connect(process.env.MONGODB_URI);
+  if (!client) {
+    return {
+      props: {}
+    };
+  }
+  const db = client.db('Users');
+
+  const data = await db.collection("UserData").findOne({ email: session.user.email });
+  const user = JSON.stringify(data);
+
+  // Return the data
   return {
-    props: {}
+    props: {user}
   };
 }
 
 export default function Dashboard(props) {
+  const user = JSON.parse(props.user);
+
   return (
     <div>
-      <h1>Top secret</h1>
+      { user.host === 'true' ?
+          <div>
+            <Host />
+          </div>
+        :
+          <div></div>
+      }
+      <div>
+        <Renter />
+      </div>
     </div>
   );
 }
