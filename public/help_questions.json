@@ -1,0 +1,47 @@
+{
+  "data": [
+    {
+      "name": "Instructions",
+      "data": [
+        {
+          "name": "Renting",
+          "data": [
+            {
+              "question": "Renter's Procedures",
+              "answer": "After signing up for an renter account and agreeing to the renter contract, you can search for a workspace you'd like. Once selected, click checkout and pay the amount needed to rent the property."
+            },
+            {
+              "question": "Host's Procedures",
+              "answer": "After filling out the information in the create listing wizard, your listing will be added to our database. Once added, it will be available for renters to rent."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FAQ",
+      "data": [
+        {
+          "name": "Lamo",
+          "data" : [
+            {
+              "question": "Please do this",
+              "answer": "Don't be lazy"
+            }
+          ]
+        },
+        {
+          "name": "Another section",
+          "data" : [
+            {
+              "question": "Your next peer review is on the line",
+              "answer": "Don't be lazy"
+            }
+          ]
+        }
+      ]
+    }
+
+
+  ]
+}
