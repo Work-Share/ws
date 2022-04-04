@@ -23,10 +23,17 @@ export async function getServerSideProps(ctx) {
       props: {}
     };
   }
+  // Get User data
   const db = client.db('Users');
+  const user_data = await db.collection("UserData").findOne({ email: session.user.email });
+  const user = JSON.stringify(user_data);
 
-  const data = await db.collection("UserData").findOne({ email: session.user.email });
-  const user = JSON.stringify(data);
+  // Get the rented listings
+
+  // Get the saved listings
+
+  // If the user is a host, get the rented properties
+  
 
   // Return the data
   return {
