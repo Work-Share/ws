@@ -121,7 +121,7 @@ export default function signup() {
   }
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <div></div>;
   }
 
   return (

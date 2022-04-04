@@ -1,0 +1,57 @@
+.banner {
+  background-image: url('/images/collage.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vw;
+  width: 100%;
+  position: relative;
+}
+
+.banner_overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000a;
+}
+
+.banner_content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner_content h1 {
+  font-size: 64px;
+  text-align: center;
+}
+
+.banner_content p {
+  font-size: 24px;
+  text-align: center;
+}
+
+.banner_content * {
+  color: #faf5ff;
+}
+
+.banner_content button {
+  color: #52207d;
+  background-color: #faf5ff;
+  border: none;
+  padding: 16px 16px;
+  border-radius: 16px;
+}
+
+.banner_content button:hover {
+  color: #faf5ff;
+  background-color: #654285;
+}

@@ -1,0 +1,24 @@
+{
+  "filters": [
+    {
+      "key": "power_tools",
+      "value": "Power Tools"
+    },
+    {
+      "key": "internet",
+      "value": "Internet"
+    },
+    {
+      "key": "wifi",
+      "value": "Wi-Fi"
+    },
+    {
+      "key": "kitchen",
+      "value": "Kitchen"
+    },
+    {
+      "key": "mini_fridge",
+      "value": "Mini Fridge"
+    }
+  ]
+}

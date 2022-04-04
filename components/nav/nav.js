@@ -22,6 +22,7 @@ export default function Nav() {
         <ul>
           <li><Link href="/"><a>WorkShare</a></Link></li>
           <li><Link href="/"><a>HOME</a></Link></li>
+          <li><Link href="/search"><a>SEARCH</a></Link></li>
           { status === "authenticated" ? signed_in_links : signed_out_links }
         </ul>
     </div>

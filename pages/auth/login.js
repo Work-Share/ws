@@ -56,7 +56,7 @@ export default function login(props) {
   }
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <div></div>;
   }
 
   return (

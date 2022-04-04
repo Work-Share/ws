@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "name": "Instructions",
+      "data": [
+        {
+          "name": "Renter Dashboard",
+          "data": [
+            {
+              "question": "Renter Dashboard",
+              "answer": "Fix this"
+            },
+            {
+              "question": "Complete this",
+              "answer": "Fix this"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FAQ",
+      "data": [
+        {
+          "name": "Lamo",
+          "data" : [
+            {
+              "question": "Please do this",
+              "answer": "Don't be lazy"
+            }
+          ]
+        },
+        {
+          "name": "Another section",
+          "data" : [
+            {
+              "question": "Your next peer review is on the line",
+              "answer": "Don't be lazy"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
