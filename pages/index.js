@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from './index.module.css';
 import Link from 'next/link';
 
@@ -11,6 +10,7 @@ export default function Home() {
         <meta name="description" content="Unleash your creativity" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <div className={styles.banner}>
         <div className={styles.banner_overlay}></div>
         <div className={styles.banner_content}>
