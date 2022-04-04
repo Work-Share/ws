@@ -19,12 +19,13 @@ export default function Nav() {
 
   return (
     <div className={styles.nav}>
-        <ul>
-          <li><Link href="/"><a>WorkShare</a></Link></li>
-          <li><Link href="/"><a>HOME</a></Link></li>
-          <li><Link href="/search"><a>SEARCH</a></Link></li>
-          { status === "authenticated" ? signed_in_links : signed_out_links }
-        </ul>
+      <ul>
+        <li><Link href="/"><a>WorkShare</a></Link></li>
+        <li><Link href="/"><a>HOME</a></Link></li>
+        <li key="help"><Link href="/help"><a>HELP</a></Link></li>
+        <li><Link href="/search"><a>SEARCH</a></Link></li>
+        {status === "authenticated" ? signed_in_links : signed_out_links}
+      </ul>
     </div>
   );
 }

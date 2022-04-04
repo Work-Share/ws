@@ -8,7 +8,6 @@ export default function Home() {
       <Head>
         <title>WorkShare</title>
         <meta name="description" content="Unleash your creativity" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       
       <div className={styles.banner}>

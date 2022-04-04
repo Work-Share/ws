@@ -63,7 +63,6 @@ export default function login(props) {
     <div>
       <Head>
         <title>Login</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className={styles.yee}>

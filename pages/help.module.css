@@ -1,0 +1,60 @@
+.section_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 32px 0;
+}
+
+.questions_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  padding: 0 32px;
+  width: calc(50vw);
+}
+
+.question {
+  display: flex;
+}
+
+.question div span {
+  cursor: pointer;
+  padding: 16px;
+  display: flex;
+  transition: 0.3s;
+  border-radius: 8px;
+}
+
+.question div span:hover {
+  background-color: #f0f0f0;
+}
+
+.question div span::before {
+  content: "-";
+  margin-right: 8px;
+}
+
+.answer {
+  padding: 16px;
+  padding-top: 8px;
+}
+
+.collapsible {
+  display: flex;
+  flex-direction: column;
+}
+
+.section_text{
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20%;
+  margin-left: 20%;
+}
