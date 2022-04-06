@@ -101,6 +101,7 @@ export default class Search extends React.Component {
       console.log(listing);
       if (checker(this.state.filters, listing.amenities)) {
         new_cards.push(<ListingCard
+          url={"/listing/" + listing._id}
           key={listing._id}
           id={listing._id}
           name={listing.name}

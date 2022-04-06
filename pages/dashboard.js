@@ -2,7 +2,6 @@ import { getSession } from 'next-auth/react';
 import styles from './dashboard.module.css';
 import Renter from '../components/dashboard/renter';
 import Host from '../components/dashboard/host';
-import { useSession } from 'next-auth/react';
 import { MongoClient } from 'mongodb';
 
 export async function getServerSideProps(ctx) {
