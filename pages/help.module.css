@@ -1,3 +1,4 @@
+
 .section_container {
   display: flex;
   flex-direction: column;
@@ -12,6 +13,28 @@
   margin: 32px 0;
 }
 
+.content_container {
+  width: 5rem;
+}
+
+.big_section {
+  font-size: 1.5rem;
+}
+
+.small_section {
+  font-size: 1rem;
+}
+
+.table_of_contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table_of_contents ul {
+  list-style: none;
+}
+
 .questions_container {
   display: flex;
   flex-direction: column;
@@ -24,26 +47,21 @@
   display: flex;
 }
 
-.question div span {
+.question {
   cursor: pointer;
   padding: 16px;
+  margin: 0.5rem;
   display: flex;
   transition: 0.3s;
   border-radius: 8px;
-}
-
-.question div span:hover {
-  background-color: #f0f0f0;
-}
-
-.question div span::before {
-  content: "-";
-  margin-right: 8px;
+  background-color: #c2abd9;
+  font-size: 1.2rem;
 }
 
 .answer {
   padding: 16px;
   padding-top: 8px;
+  font-size: 1.1rem;
 }
 
 .collapsible {

@@ -7,11 +7,11 @@ function Collapsible(props, question, answer) {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
   return (
     <div className={styles.collapsible}>
-      <div className="header" {...getToggleProps()}>
+      <div className={styles.question} {...getToggleProps()}>
         {isExpanded ? props.question : props.question}
       </div>
       <div {...getCollapseProps()}>
-        <div className={styles.content}>
+        <div className={styles.answer}>
           {props.answer}
         </div>
       </div>
@@ -19,21 +19,29 @@ function Collapsible(props, question, answer) {
   );
 }
 
-
-
 export default function help() {
+  const content_html = [];
+  const question_html = [];
+
   // TODO: There is a hydration error here
   const questions_html = question_data.data.map((section) => {
     const group_html = [];
 
-    section.data.forEach((group) => {
-      const question_html = [];
+    content_html.push(
+      <div className={styles.content_container}>
+        <div className={styles.big_section}>{section.name}</div>
+        <ul>
+          {section.data.map((group) => {
+            return <li className={styles.small_section}>{group.name}</li>
+          })}
+        </ul>
+      </div>
+    )
 
+    section.data.forEach((group) => {
       group.data.forEach((questions) => {
         question_html.push(
-          <div className={styles.question} key={questions.question}>
-            <Collapsible question={questions.question} answer={questions.answer} />
-          </div>
+          <Collapsible question={questions.question} answer={questions.answer} />
         );
       });
 
@@ -70,6 +78,9 @@ export default function help() {
         <h1>Help</h1>
       </div>
 
+      <div className={styles.table_of_contents}>
+        {content_html}
+      </div>
       {questions_html}
 
     </div>
