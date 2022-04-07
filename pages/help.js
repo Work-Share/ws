@@ -1,7 +1,7 @@
 import React from 'react';
-import useCollapse from 'react-collapsed';
-import question_data from '../public/help_questions.json';
 import styles from './help.module.css'
+import question_data from '../public/help_questions.json';
+import useCollapse from 'react-collapsed';
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 function Collapsible(props, question, answer) {
