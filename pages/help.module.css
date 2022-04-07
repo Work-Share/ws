@@ -1,4 +1,3 @@
-
 .section_container {
   display: flex;
   flex-direction: column;
@@ -56,6 +55,7 @@
   border-radius: 8px;
   background-color: #c2abd9;
   font-size: 1.2rem;
+  box-shadow: 7px 5px 5px #b99bd7;
 }
 
 .answer {
