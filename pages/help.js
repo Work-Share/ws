@@ -2,6 +2,7 @@ import React from 'react';
 import useCollapse from 'react-collapsed';
 import question_data from '../public/help_questions.json';
 import styles from './help.module.css'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 function Collapsible(props, question, answer) {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
@@ -29,10 +30,10 @@ export default function help() {
 
     content_html.push(
       <div className={styles.content_container}>
-        <div className={styles.big_section}>{section.name}</div>
+        <AnchorLink href={`#${section.name}`}><div className={styles.big_section}>{section.name}</div></AnchorLink>
         <ul>
           {section.data.map((group) => {
-            return <li className={styles.small_section}>{group.name}</li>
+            return <AnchorLink href={`#${group.name}`}><li className={styles.small_section}>{group.name}</li></AnchorLink>
           })}
         </ul>
       </div>
@@ -46,7 +47,7 @@ export default function help() {
       });
 
       group_html.push(
-        <div className={styles.questions_container} key={group.name}>
+        <div className={styles.questions_container} id={group.name} key={group.name}>
           <h2 className={styles.question_group_title}>{group.name}</h2>
           {question_html}
         </div>
@@ -54,7 +55,7 @@ export default function help() {
     });
 
     return (
-      <div className={styles.section_container} key={section.name}>
+      <div className={styles.section_container} key={section.name} id={section.name}>
         <h1 className={styles.section_title}>{section.name}</h1>
         {group_html}
       </div>
