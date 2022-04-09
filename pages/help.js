@@ -28,22 +28,20 @@ export default function Help() {
     const group_html = [];
 
     content_html.push(
-      <div className={styles.content_container}>
-        <ul>
+        <ul key={section.name}>
           <li className={styles.big_section}><AnchorLink href={`#${section.name}`}>{section.name}</AnchorLink></li>
           <ul>
             {section.data.map((group) => {
-              return <li className={styles.small_section}><AnchorLink href={`#${group.name}`}>{group.name}</AnchorLink></li>
+              return <li key={group.name} className={styles.small_section}><AnchorLink href={`#${group.name}`}>{group.name}</AnchorLink></li>
             })}
           </ul>
         </ul>
-      </div>
     )
 
     section.data.forEach((group) => {
       group.data.forEach((questions) => {
         question_html.push(
-          <Collapsible question={questions.question} answer={questions.answer} />
+          <Collapsible key={questions.question} question={questions.question} answer={questions.answer} />
         );
       });
 
@@ -79,7 +77,7 @@ export default function Help() {
       <h1 className={styles.section_title}>Help</h1>
 
       <div className={styles.table_of_contents}>
-        <div>
+        <div className={styles.content_container}>
           {content_html}
         </div>
       </div>

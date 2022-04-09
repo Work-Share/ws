@@ -69,8 +69,7 @@ export default class Search extends React.Component {
       new_filters.splice(new_filters.indexOf(e.target.id), 1);
     }
 
-    this.state.filters = new_filters;
-    this.setState({ filters: this.state.filters });
+    this.setState({ filters: this.state.filters = new_filters });
     if (this.state.fetched_listings.length > 0) {
       this.update_display();
     }
@@ -126,7 +125,7 @@ export default class Search extends React.Component {
                 type="date" name="start" required value={this.state.rent_start} min={this.state.today}
                 onChange={(e) => {
                   if (e.target.value > this.state.rent_end) {
-                    this.state.rent_end = e.target.value;
+                    this.setState({ rent_end: e.target.value });
                   }
                   this.setState({ rent_start: e.target.value });
                 }}
