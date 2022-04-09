@@ -48,6 +48,10 @@
   border-radius: 16px;
 }
 
+.filter input:checked ~ label:hover  {
+  border-radius: 8px;
+}
+
 .search_container {
     margin-top: 32px;
     display: flex;
