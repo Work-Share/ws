@@ -1,11 +1,11 @@
 .footer {
-  background-color: #654285;
+  background-color: #c2abd9;
   padding: 16px;
   box-shadow: 0px -3px 9px rgba(0,0,0,.25);
 }
 
 .footer * {
-  color: #faf5ff;
+  color: #52207d;
 }
 
 .scroll_to_top {

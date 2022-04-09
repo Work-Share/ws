@@ -145,6 +145,12 @@ export default class Search extends React.Component {
             </div>
           </form>
         </div>
+        <div className={styles.search_filters}>
+          <h2>Filters</h2>
+          <form>
+            {this.state.filters_html}
+          </form>
+        </div>
         <div className={styles.num_fetched + " hide"} id="num_fetched">
           {(this.state.fetched_listings.length > 0)
             ?
@@ -153,12 +159,6 @@ export default class Search extends React.Component {
             <p></p>
           }
         </div>
-        <div className={styles.search_filters}>
-          <h2>Filters</h2>
-          <form>
-            {this.state.filters_html}
-          </form>
-        </div>
         <div className={styles.search_container}>
           {(this.state.display_cards.length > 0)
             ?
@@ -166,7 +166,7 @@ export default class Search extends React.Component {
             :
             (this.state.fetched_listings.length > 0)
               ?
-              <p>No listings match the selected filters</p>
+              <p className={styles.no_listings}>No listings available with the selected filters</p>
               :
               <p>Invalid time range</p>
           }

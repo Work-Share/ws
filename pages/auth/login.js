@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { signIn, getSession } from 'next-auth/react';
 
-export default function login(props) {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");

@@ -4,7 +4,7 @@ import styles from './signup.module.css';
 import { useRouter } from 'next/router';
 import { getSession, signIn } from 'next-auth/react';
 
-export default function signup() {
+export default function Signup() {
   // Form states
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");

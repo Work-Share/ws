@@ -20,21 +20,22 @@ function Collapsible(props, question, answer) {
   );
 }
 
-export default function help() {
+export default function Help() {
   const content_html = [];
   const question_html = [];
 
-  // TODO: There is a hydration error here
   const questions_html = question_data.data.map((section) => {
     const group_html = [];
 
     content_html.push(
       <div className={styles.content_container}>
-        <AnchorLink href={`#${section.name}`}><div className={styles.big_section}>{section.name}</div></AnchorLink>
         <ul>
-          {section.data.map((group) => {
-            return <AnchorLink href={`#${group.name}`}><li className={styles.small_section}>{group.name}</li></AnchorLink>
-          })}
+          <li className={styles.big_section}><AnchorLink href={`#${section.name}`}>{section.name}</AnchorLink></li>
+          <ul>
+            {section.data.map((group) => {
+              return <li className={styles.small_section}><AnchorLink href={`#${group.name}`}>{group.name}</AnchorLink></li>
+            })}
+          </ul>
         </ul>
       </div>
     )
@@ -75,12 +76,12 @@ export default function help() {
         </p>
       </div>
 
-      <div className={styles.section_title}>
-        <h1>Help</h1>
-      </div>
+      <h1 className={styles.section_title}>Help</h1>
 
       <div className={styles.table_of_contents}>
-        {content_html}
+        <div>
+          {content_html}
+        </div>
       </div>
       {questions_html}
 
