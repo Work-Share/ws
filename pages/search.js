@@ -69,7 +69,20 @@ export default class Search extends React.Component {
       new_filters.splice(new_filters.indexOf(e.target.id), 1);
     }
 
-    this.setState({ filters: this.state.filters = new_filters });
+    this.setState(state => {
+      const updated_filters = new_filters
+      return ({
+        fetched_listings: state.fetched_listings,
+        display_cards: state.display_cards,
+        filters: updated_filters,
+        filters_html: state.filters_html,
+        rent_start: state.rent_start,
+        rent_end: state.rent_end,
+        today: state.today,
+        loading: state.loading
+      })
+    })
+    // this.setState({ filters: this.state.filters = new_filters });
     if (this.state.fetched_listings.length > 0) {
       this.update_display();
     }
@@ -171,7 +184,7 @@ export default class Search extends React.Component {
           }
         </div>
 
-        { this.state.loading ?
+        {this.state.loading ?
           <div className="loading">
             <p>Loading</p>
             <div className="lds_ellipsis">
@@ -181,9 +194,9 @@ export default class Search extends React.Component {
               <div></div>
             </div>
           </div>
-        :
-        <div></div>
-      }
+          :
+          <div></div>
+        }
       </div>
     );
   }
