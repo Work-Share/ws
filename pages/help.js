@@ -40,7 +40,6 @@ export default function Help() {
 
     section.data.forEach((group) => {
       group.data.forEach((questions) => {
-        console.log(questions.question)
         question_html.push(
           <Collapsible key={questions.question} question={questions.question} answer={questions.answer} />
         );
