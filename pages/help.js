@@ -22,7 +22,7 @@ function Collapsible(props, question, answer) {
 
 export default function Help() {
   const content_html = [];
-  const question_html = [];
+  var question_html = [];
 
   const questions_html = question_data.data.map((section) => {
     const group_html = [];
