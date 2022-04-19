@@ -20,3 +20,13 @@
 .description {
 
 }
+
+.address {
+  font-style: italic;
+}
+
+.checkout {
+  padding: 64px 0;
+  display: flex;
+  justify-content: center;
+}

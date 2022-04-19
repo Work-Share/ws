@@ -3,6 +3,9 @@ import { MongoClient } from 'mongodb';
 import { ObjectID } from 'bson';
 import Meta from '../../components/meta';
 import filter_data from '../../data/filters.json';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export async function getServerSideProps({ params }) {
     const client = await MongoClient.connect(process.env.MONGODB_URI);
@@ -33,6 +36,8 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Listing(props) {
+    const { data: session, status } = useSession();
+    const router = useRouter();
     console.log(props);
 
     const amenities_html = [];
@@ -52,6 +57,9 @@ export default function Listing(props) {
                 <div className={styles.description}>
                     <p>{props.listing.description}</p>
                 </div>
+                <div className={styles.address}>
+                    <p>{props.listing.address}</p>
+                </div>
                 <div className={styles.amenities}>
                     { props.listing.amenities.length > 0 ?
                         <div>
@@ -64,6 +72,15 @@ export default function Listing(props) {
                         <div></div>
                     }
                 </div>
+            </div>
+            <div className={styles.checkout}>
+                {status === "authenticated" ?
+                    <button onClick={() => {router.push('/listing/checkout')}}>Checkout</button>
+                :
+                    <p>You must have an account to rent a property</p>
+                    <Link><a>Sign up</a></Link>
+                    <Link><a> </a></Link>
+                }
             </div>
         </div>
     );
