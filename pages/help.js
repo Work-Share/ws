@@ -22,20 +22,20 @@ function Collapsible(props, question, answer) {
 
 export default function Help() {
   const content_html = [];
-  const question_html = [];
+  var question_html = [];
 
   const questions_html = question_data.data.map((section) => {
     const group_html = [];
 
     content_html.push(
-        <ul key={section.name}>
-          <li className={styles.big_section}><AnchorLink href={`#${section.name}`}>{section.name}</AnchorLink></li>
-          <ul>
-            {section.data.map((group) => {
-              return <li key={group.name} className={styles.small_section}><AnchorLink href={`#${group.name}`}>{group.name}</AnchorLink></li>
-            })}
-          </ul>
+      <ul key={section.name}>
+        <li className={styles.big_section}><AnchorLink href={`#${section.name}`}>{section.name}</AnchorLink></li>
+        <ul>
+          {section.data.map((group) => {
+            return <li key={group.name} className={styles.small_section}><AnchorLink href={`#${group.name}`}>{group.name}</AnchorLink></li>
+          })}
         </ul>
+      </ul>
     )
 
     section.data.forEach((group) => {
@@ -51,6 +51,8 @@ export default function Help() {
           {question_html}
         </div>
       );
+
+      question_html = []
     });
 
     return (
