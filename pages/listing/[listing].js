@@ -77,9 +77,11 @@ export default function Listing(props) {
                 {status === "authenticated" ?
                     <button onClick={() => {router.push('/listing/checkout')}}>Checkout</button>
                 :
+                    <div>
                     <p>You must have an account to rent a property</p>
                     <Link><a>Sign up</a></Link>
-                    <Link><a> </a></Link>
+                    <Link><a>Log in</a></Link>
+                    </div>
                 }
             </div>
         </div>
