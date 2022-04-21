@@ -78,9 +78,9 @@ export default function Listing(props) {
                     <button onClick={() => {router.push('/listing/checkout')}}>Checkout</button>
                 :
                     <div>
-                    <p>You must have an account to rent a property</p>
-                    <Link><a>Sign up</a></Link>
-                    <Link><a>Log in</a></Link>
+                        <p>You must have an account to rent a property</p>
+                        <Link href={{ pathname: "/auth/signup", query : { redirect: "/listing/" + props.listing._id }}}><a>Sign up</a></Link>
+                        <Link href={{ pathname: "/auth/login", query : { redirect: "/listing/" + props.listing._id }}}><a>Log in</a></Link>
                     </div>
                 }
             </div>

@@ -116,7 +116,12 @@ export default function Signup() {
       setError([['other', status.error]]);
     }
     else {
-      router.push("/dashboard");
+      if (router.query.redirect) {
+        router.push(router.query.redirect);
+      }
+      else {
+        router.push("/dashboard");
+      }
     }
   }
 

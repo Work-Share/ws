@@ -51,7 +51,12 @@ export default function Login(props) {
       setError(status.error);
     }
     else {
-      router.push("/dashboard");
+      if (router.query.redirect) {
+        router.push(router.query.redirect);
+      }
+      else {
+        router.push("/dashboard");
+      }
     }
   }
 
