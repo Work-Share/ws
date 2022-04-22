@@ -3,6 +3,7 @@ import styles from './dashboard.module.css';
 import Renter from '../components/dashboard/renter';
 import Host from '../components/dashboard/host';
 import { MongoClient } from 'mongodb';
+import { ObjectID } from 'bson';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession({ req: ctx.req });
@@ -55,11 +56,11 @@ export async function getServerSideProps(ctx) {
     }
   }
 
-  // If the user is a host, get the rented properties
+  // If the user is a host, get the listed properties
   if (user_data.host === 'true') {
     for (let i = 0; i < user_data.listedProperties.length; i++) {
       if (user_data.listedProperties[i] != "") {
-          let id = user_data.listedPropeties[i]
+          let id = user_data.listedProperties[i]
           const listingsData = await db2.collection("listings").find({ _id: { $eq: ObjectID(id) } }).toArray();
           const fetchData = JSON.parse(JSON.stringify(listingsData));
           listingData.listedProperties.push(fetchData);
@@ -84,7 +85,7 @@ export default function Dashboard(props) {
     <div>
       { user.host === 'true' ?
           <div>
-            <Host />
+            <Host data={props.listingData.listedProperties[0]} />
           </div>
         :
           <div></div>
