@@ -103,6 +103,7 @@ export default function Signup() {
     if (res.status !== 200) {
       console.log('Setting error')
       setError([['other', data.msg]]);
+      return;
     }
 
     // Success, sign in and redirect
