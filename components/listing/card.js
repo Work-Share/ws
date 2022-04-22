@@ -18,3 +18,22 @@ export default function ListingCard(props) {
     </div>
   );
 }
+
+export function ListedPropertiesCard(props) {
+  return (
+    <div className={styles.card_container}>
+      <Link href={props.url}>
+        <a>
+          <div className={styles.card}>
+            <div className={styles.card_img} style={{ backgroundImage: "url(" + props.img + ")" }}>
+            </div>
+            <div className={styles.card_info}>
+              <p>{props.name}</p>
+              <button>Manage</button>
+            </div>
+          </div>
+        </a>
+      </Link>
+    </div>
+  );
+}
