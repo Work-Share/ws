@@ -85,13 +85,13 @@ export default function Dashboard(props) {
     <div>
       { user.host === 'true' ?
           <div>
-            <Host data={props.listingData.listedProperties[0]} />
+            <Host data={props.listingData.listedProperties} />
           </div>
         :
           <div></div>
       }
       <div>
-        <Renter />
+        <Renter data={props.listingData} />
       </div>
     </div>
   );

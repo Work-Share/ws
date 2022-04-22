@@ -101,7 +101,6 @@ export default function Signup() {
 
     const data = await res.json();
     if (res.status !== 200) {
-      console.log('Setting error')
       setError([['other', data.msg]]);
       setSignUpLoading(false);
       return;
@@ -183,7 +182,7 @@ export default function Signup() {
                       const newChecked = e.target.checked + "";
                       setHostChecked(newChecked);
                   }} />
-                  <label>Check this if you are applying for a host account and you have read and agree to the <a target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1eaB7ag8mGOtVywuFCbZM-TaIwv6p0QqG/view?usp=sharing" onClick={e => { console.log(e.target.parentElement.parentElement.firstChild.removeAttribute("disabled")); }}>host contract.</a></label>
+                  <label>Check this if you are applying for a host account and you have read and agree to the <a target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1eaB7ag8mGOtVywuFCbZM-TaIwv6p0QqG/view?usp=sharing" onClick={e => { e.target.parentElement.parentElement.firstChild.removeAttribute("disabled"); }}>host contract.</a></label>
                 </div>
 
                 <div className={styles.contract_checkbox}>
@@ -191,7 +190,7 @@ export default function Signup() {
                       const newChecked = e.target.checked + "";
                       setRenterChecked(newChecked);
                   }} />
-                  <label>Check this if you are applying for a renter account and you have read and agree to the <a target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1F2szip5YNDT1VbC7qdsAtBc7pKRLie3L/view?usp=sharing" onClick={e => { console.log(e.target.parentElement.parentElement.firstChild.removeAttribute("disabled")); }}>renter contract</a></label>
+                  <label>Check this if you are applying for a renter account and you have read and agree to the <a target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1F2szip5YNDT1VbC7qdsAtBc7pKRLie3L/view?usp=sharing" onClick={e => { e.target.parentElement.parentElement.firstChild.removeAttribute("disabled"); }}>renter contract</a></label>
                 </div>
               </div>
 
