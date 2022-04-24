@@ -18,24 +18,37 @@
         }
       ]
     },
-    {
+    { 
       "name": "FAQ",
       "data": [
         {
-          "name": "Lamo",
+          "name": "Questions for Renters",
           "data" : [
             {
-              "question": "Please do this",
-              "answer": "Don't be lazy"
+              "question": "How does pricing for properties work?",
+              "answer": "Rent is charged daily and the price is set by the host. The price can be negotiated with the host. We at WorkShare are not involved in setting prices so any concern related to prices will need to be discussed with the property owner."
+            },
+            {
+              "question": "What are the two types of accounts?",
+              "answer": "We have two types of accounts at workshare, a renter account and host account. The renter account is for those who wish to rent properties and the host account is for people who wish to rent out their properties. If you would like to become both a renter and a host, you would need to view both of the contracts and check both boxes during the signup process."
+            },
+            {
+              "question":"How do I sign up for an account?",
+              "answer": "In the menu bar, look for the 'Sign Up' button. Click on it and fill out the form. Once you have filled out the form, click the 'Sign Up' button. You will be taken to your renter dashboard."
             }
+
           ]
         },
         {
-          "name": "Another section",
+          "name": "Questions for Hosts",
           "data" : [
             {
-              "question": "Your next peer review is on the line",
-              "answer": "Don't be lazy"
+              "question": "How do I sign up for an account?",
+              "answer": "Int he menu bar, look for the 'Sign Up' button. Click on it and fill out the form (be sure to click both the host and renter contracts). Once you have filled out the form, click the 'Sign Up' button. You will be taken to your host dashboard."
+            },
+            {
+              "question": "How do I create a listing?",
+              "answer": "Refer to the Instructions section above for more information."
             }
           ]
         }
