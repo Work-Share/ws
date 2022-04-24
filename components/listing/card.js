@@ -1,7 +1,8 @@
+import React, { useState } from 'react';
 import styles from './card.module.css';
 import Link from 'next/link';
 
-export default function ListingCard(props) {
+export default function ListingCard(props, ) {
   return (
     <div className={styles.card_container}>
       <Link href={props.url}>
@@ -11,25 +12,6 @@ export default function ListingCard(props) {
             </div>
             <div className={styles.card_info}>
               <p>{props.name}</p>
-            </div>
-          </div>
-        </a>
-      </Link>
-    </div>
-  );
-}
-
-export function ListedPropertiesCard(props) {
-  return (
-    <div className={styles.card_container}>
-      <Link href={props.url}>
-        <a>
-          <div className={styles.card}>
-            <div className={styles.card_img} style={{ backgroundImage: "url(" + props.img + ")" }}>
-            </div>
-            <div className={styles.card_info}>
-              <p>{props.name}</p>
-              <button>Manage</button>
             </div>
           </div>
         </a>

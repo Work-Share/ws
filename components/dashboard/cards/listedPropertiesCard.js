@@ -8,13 +8,14 @@ function ManageModal(props, open, close) {
       isOpen={props.open}
       onRequestClose={props.close}
       contentLabel="Manage"
+      className={styles.modal_container}
     >
       <div></div>
     </Modal>
   )
 }
 
-export default function Card(props, name, img_url) {
+export default function ListedPropertiesCard(props, name, img_url, id) {
   const [modalIsOpen, setIsOpen] = useState(false)
 
   function openModal() {
@@ -25,14 +26,22 @@ export default function Card(props, name, img_url) {
     setIsOpen(false);
   }
 
+  console.log("url(" + props.img_url + ")")
+
   return (
-    <div className={styles.card}>
-      <img src={props.img_url} className={styles.image} />
-      <div className={styles.content}>
-        <div>{props.name}</div>
-        <button onClick={openModal}>Manage</button>
-        <ManageModal open={modalIsOpen} close={closeModal} />
-      </div>
+    <div className={styles.card_container}>
+      <a>
+        <div className={styles.card}>
+          <div className={styles.card_img} style={{ backgroundImage: `url(${props.img_url})` }}>
+          </div>
+          <div className={styles.card_info}>
+            <p>{props.name}</p>
+            <button onClick={openModal}>Manage</button>
+          </div>
+        </div>
+      </a>
+
+      <ManageModal open={modalIsOpen} close={closeModal} />
     </div>
-  )
+  );
 }
