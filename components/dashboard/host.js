@@ -7,12 +7,10 @@ export default function Host(props, data) {
             <div className={styles.section}>
                 <h1>Listed Properties</h1>
 
-                {/* {props.data.map((property, key) => {
-                    return <Card key={key} name={property.name} img_url={property.image_url} id={property._id} />
-                })} */}
-
                 {props.data.map((property, key) => {
-                return <ListedPropertiesCard name={property.name} img_url={property.image_url} />
+                    if (property.name) {
+                        return <ListedPropertiesCard name={property.name} img_url={property.image_url} />
+                    }
                 })}
             </div>
         </div>
