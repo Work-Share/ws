@@ -112,7 +112,7 @@ export default class Search extends React.Component {
     this.state.fetched_listings.forEach(listing => {
       console.log(listing);
       if (checker(this.state.filters, listing.amenities)) {
-        new_cards.push(<ListingCard
+        new_cards.push(<p><ListingCard
           url={"/listing/" + listing._id}
           key={listing._id}
           id={listing._id}
@@ -120,7 +120,7 @@ export default class Search extends React.Component {
           rating={listing.price.$numberDecimal}
           img={listing.image_url}
           check_in={this.state.rent_start}
-          check_out={this.state.rent_end} />);
+          check_out={this.state.rent_end} /></p>);
       }
     });
     this.setState({ display_cards: new_cards });
