@@ -4,7 +4,7 @@ import Card from '../listing/card';
 export default function Renter(props) {
     const rented_properties = [];
 
-    console.log(props);
+    // console.log(props);
 
     return (
         <div>
