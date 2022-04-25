@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './card.module.css';
 import Link from 'next/link';
 
-export default function ListingCard(props, ) {
+export default function ListingCard(props) {
   return (
     <div className={styles.card_container}>
       <Link href={props.url}>
