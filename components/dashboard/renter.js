@@ -1,4 +1,5 @@
 import styles from './renter.module.css';
+import Card from './listing/card';
 
 export default function Renter(props) {
     const rented_properties = [];
