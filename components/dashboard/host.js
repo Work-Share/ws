@@ -1,5 +1,5 @@
 import styles from './host.module.css';
-import Card from './listing/card';
+import Card from '../listing/card';
 
 export default function Host(props) {
     return (
