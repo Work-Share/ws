@@ -8,9 +8,6 @@ export default async function handler(req, res) {
   }
 
   const { email, password, host } = req.body;
-  console.log(email);
-  console.log(password);
-  console.log(host);
 
   // Validate data
   if (!email || !email.includes('@') || !password) {
