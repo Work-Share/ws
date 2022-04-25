@@ -1,6 +1,6 @@
 import styles from './host.module.css';
 // import ListingCard from '../listing/card';
-import ListedPropertiesCard from './cards/listedPropertiesCard';
+import ListedPropertiesCard from './cards/dashboardCards';
 
 export default function Host(props) {
     return (

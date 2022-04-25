@@ -1,5 +1,6 @@
 import styles from './renter.module.css';
 import Card from '../listing/card';
+import { RentedPropertiesCard, SavedPropertiesCard } from './cards/dashboardCards';
 
 export default function Renter(props) {
     const rented_properties = [];
@@ -13,9 +14,12 @@ export default function Renter(props) {
                 {
                     props.data.rentedProperties.length > 0 ?
                         props.data.rentedProperties.map((property, key) => {
-                            return <Card key={key} name={property.name} />
+                            if (property !== "") {
+                                const p = property[0]
+                                return <RentedPropertiesCard key={key} name={p.name} img_url={p.image_url} id={p._id} />
+                            }
                         })
-                    :
+                        :
                         <p><i>You ratskin, you have not rented any properties. Go to search and give us your money.</i></p>
                 }
             </div>
@@ -24,9 +28,13 @@ export default function Renter(props) {
                 {
                     props.data.savedProperties.length > 0 ?
                         props.data.savedProperties.map((property, key) => {
-                            return <Card key={key} name={property.name} />
+                            if (property !== "") {
+                                const p = property[0]
+
+                                return <SavedPropertiesCard key={key} name={p.name} img_url={p.image_url} id={p._id} />
+                            }
                         })
-                    :
+                        :
                         <p><i>You have not saved any properties</i></p>
                 }
             </div>
