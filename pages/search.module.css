@@ -1,7 +1,7 @@
 .search_title {
-    width: 60%;
-    padding: 32px 20%;
-    text-align: center;
+  width: 60%;
+  padding: 32px 20%;
+  text-align: center;
 }
 
 .search_filters {
@@ -34,29 +34,35 @@
   cursor: pointer;
 }
 
-.filter input:checked ~ label {
+.filter input:checked~label {
   background-color: #52207d;
   color: #faf5ff;
-  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
 }
 
-.filter label:hover, .filter input:checked ~ label:hover  {
+.filter label:hover,
+.filter input:checked~label:hover {
   background-color: #654285;
   color: #faf5ff;
   transform: translateY(-4px);
-  box-shadow: 0 3px 9px rgba(0,0,0,.25);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, .25);
   border-radius: 16px;
 }
 
-.filter input:checked ~ label:hover  {
+.filter input:checked~label:hover {
   border-radius: 8px;
 }
 
 .search_container {
-    margin-top: 32px;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 32px;
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 32px;
+}
+
+.search_container > p {
+  width: 25%;
 }
 
 .search_bar_container {
@@ -66,12 +72,12 @@
 }
 
 .search_bar_form {
-    padding: 16px;
-    box-shadow: 0 2px 8px #c2abd9;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    background-color: #faf5ff;
+  padding: 16px;
+  box-shadow: 0 2px 8px #c2abd9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  background-color: #faf5ff;
 }
 
 .date {
@@ -109,7 +115,7 @@
   background-color: #654285;
   color: #faf5ff;
   border-bottom: 2px solid #52207d;
-  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
 }
 
 .num_fetched {
