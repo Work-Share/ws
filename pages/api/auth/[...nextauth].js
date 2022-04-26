@@ -33,5 +33,6 @@ export default NextAuth({
         return { email: result.email };
       }
     })
-  ]
+  ],
+  secret: process.env.JWT_SECRET
 });
