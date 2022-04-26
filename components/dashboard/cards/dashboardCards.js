@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styles from './dashboardCards.module.css'
 import Modal from 'react-modal';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 function ManageModal(props, open, close) {
   return (
@@ -25,8 +27,6 @@ export default function ListedPropertiesCard(props, name, img_url, id) {
   function closeModal() {
     setIsOpen(false);
   }
-
-  console.log("url(" + props.img_url + ")")
 
   return (
     <div className={styles.card_container}>
@@ -57,8 +57,6 @@ export function RentedPropertiesCard(props, name, img_url, id) {
     setIsOpen(false);
   }
 
-  console.log("url(" + props.img_url + ")")
-
   return (
     <div className={styles.card_container}>
       <a>
@@ -78,17 +76,20 @@ export function RentedPropertiesCard(props, name, img_url, id) {
 }
 
 export function SavedPropertiesCard(props, name, img_url, id) {
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const { data: session, status } = useSession();
+  var email
 
-  function openModal() {
-    setIsOpen(true);
+  if (session) email = session.user.email
+
+  const router = useRouter()
+
+  const removeSavedProperty = async () => {
+    let search_params = new URLSearchParams();
+    search_params.append('email', email);
+    search_params.append('id', props.id);
+    fetch("/api/dashboard/removeSavedProperty?" + search_params.toString())
+      .then(router.reload())
   }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  console.log("url(" + props.img_url + ")")
 
   return (
     <div className={styles.card_container}>
@@ -98,12 +99,11 @@ export function SavedPropertiesCard(props, name, img_url, id) {
           </div>
           <div className={styles.card_info}>
             <p>{props.name}</p>
-            <button onClick={openModal}>Manage</button>
+            <button onClick={removeSavedProperty}>Remove</button>
           </div>
         </div>
       </a>
 
-      <ManageModal open={modalIsOpen} close={closeModal} />
     </div>
   );
 }
