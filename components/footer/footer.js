@@ -1,4 +1,5 @@
 import styles from './footer.module.css';
+import Link from 'next/link';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -12,7 +13,10 @@ export default function Footer() {
     <div className={styles.footer}>
       <div className={styles.scroll_to_top}><p onClick={scrollToTop}>To Top</p></div>
       <div className={styles.information}>
-        <p>Contact: noemailyet</p>
+        <div className={styles.information_row}>
+          <p>Contact: noemailyet</p>
+          <Link href="/about"><a className={styles.about}>About</a></Link>
+        </div>
         <p>WorkShare</p>
       </div>
     </div>

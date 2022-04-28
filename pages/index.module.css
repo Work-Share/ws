@@ -49,6 +49,7 @@
   border: none;
   padding: 16px 16px;
   border-radius: 16px;
+  margin-bottom: 16px;
 }
 
 .banner_content button:hover {

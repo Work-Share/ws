@@ -22,3 +22,20 @@
   flex-direction: column;
   align-items: center;
 }
+
+.information_row {
+  display: flex;
+  align-items: center;
+}
+
+.information_row > * {
+  margin-right: 16px;
+}
+
+.about {
+  text-decoration: underline;
+}
+
+.about:after {
+  display: none;
+}

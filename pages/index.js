@@ -16,6 +16,7 @@ export default function Home() {
           <h1>Welcome to WorkShare</h1>
           <p>Find a workspace and unleash your creativity</p>
           <Link passHref href="/search"><button>Start Searching</button></Link>
+          <Link passHref href="/help"><button>Learn More</button></Link>
         </div>
       </div>
     </div>

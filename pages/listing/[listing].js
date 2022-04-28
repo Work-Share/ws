@@ -74,7 +74,13 @@ export default function Listing(props) {
         <div>
             <Meta title={props.listing.name} />
             <h1 className={styles.title}>{props.listing.name}</h1>
-            <button onClick={saveProperty}>Bookmark Listing</button>
+            {status === "authenticated" ?
+                <div className={styles.button_wrapper}>
+                    <button onClick={saveProperty}>Bookmark Listing</button>
+                </div>
+            :
+                <div></div>
+            }
             <div className={styles.info_grid}>
                 <div className={styles.image} style={{ backgroundImage: 'url(' + props.listing.image_url + ')' }}>
                 </div>
@@ -103,8 +109,10 @@ export default function Listing(props) {
                     :
                     <div>
                         <p>You must have an account to rent a property</p>
-                        <Link href={{ pathname: "/auth/signup", query: { redirect: "/listing/" + props.listing._id } }}><a>Sign up</a></Link>
-                        <Link href={{ pathname: "/auth/login", query: { redirect: "/listing/" + props.listing._id } }}><a>Log in</a></Link>
+                        <div className={styles.account_links}>
+                            <Link href={{ pathname: "/auth/signup", query: { redirect: "/listing/" + props.listing._id } }}><a>Sign up</a></Link>
+                            <Link href={{ pathname: "/auth/login", query: { redirect: "/listing/" + props.listing._id } }}><a>Log in</a></Link>
+                        </div>
                     </div>
                 }
             </div>

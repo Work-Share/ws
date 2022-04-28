@@ -30,3 +30,15 @@
   display: flex;
   justify-content: center;
 }
+
+.account_links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button_wrapper {
+  margin-bottom: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
