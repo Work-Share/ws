@@ -16,6 +16,7 @@ export default function Footer() {
         <div className={styles.information_row}>
           <p>Contact: noemailyet</p>
           <Link href="/about"><a className={styles.about}>About</a></Link>
+          <Link href="/help"><a className={styles.about}>Help</a></Link>
         </div>
         <p>WorkShare</p>
       </div>

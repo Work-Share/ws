@@ -54,7 +54,7 @@
 }
 
 .search_container {
-  width: 100%;
+  width: calc(100% - 64px);
   margin-top: 32px;
   display: flex;
   flex-wrap: wrap;

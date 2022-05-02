@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './help.module.css'
 import question_data from '../public/help_questions.json';
 import useCollapse from 'react-collapsed';
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import Link from 'next/link';
 
 function Collapsible(props, question, answer) {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
@@ -74,6 +75,18 @@ export default function Help() {
         </div>
       </div>
       {questions_html}
+
+      <h1 className={styles.section_title}>Get Started</h1>
+      <div className={styles.get_started}>
+        <div className={styles.get_started_section}>
+          <h2>Start Searching for properties to rent</h2>
+          <Link passHref href="/search"><button>Search</button></Link>
+        </div>
+        <div className={styles.get_started_section}>
+          <h2>Become a host and post your properties</h2>
+          <Link passHref href="/auth/signup"><button>Sign Up</button></Link>
+        </div>
+      </div>
 
     </div>
   );
