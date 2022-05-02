@@ -21,7 +21,7 @@
     transform: translateY(-4px);
     box-shadow: 0 3px 18px rgba(0, 0, 0, .5);
     border-radius: 16px;
-    background-color: #654285;
+    background-color: #c2abd9;
 }
 
 .card_img {
@@ -45,7 +45,6 @@
 }
 
 .card:hover .card_info * {
-    color: #faf5ff;
 }
 
 .modal_container {
