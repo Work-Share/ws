@@ -64,6 +64,18 @@ export default function Checkout(props) {
             <Link href={{ pathname: '/listing/' + id }}><a className={styles.back}>Back</a></Link>
             <h1 className={styles.title}>Checkout</h1>
             <h1 className={styles.title}>Confirm details</h1>
+            <form className={styles.form_container}>
+                <div className={styles.form_element_wrapper}>
+                    <div className={styles.form_element}>
+                        <label>Check in</label>
+                        <input type="date" value="2004-01-01" readOnly />
+                    </div>
+                    <div className={styles.form_element}>
+                        <label>Check out</label>
+                        <input type="date" value="2004-02-02" readOnly />
+                    </div>
+                </div>
+            </form>
             <h1 className={styles.title}>Enter Information</h1>
             <form className={styles.form_container}>
                 <div className={styles.form_element_wrapper}>
