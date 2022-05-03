@@ -104,6 +104,10 @@ function ManageModal(props, open, close) {
           </div>
         </form>
 
+        <button>Save Changes</button>
+        <button>Cancel</button>
+        <button>Delete Property</button>
+
       </div>
     </Modal>
   )
