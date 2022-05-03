@@ -69,6 +69,9 @@ export default class Search extends React.Component {
       new_filters.splice(new_filters.indexOf(e.target.id), 1);
     }
 
+    this.state.filters = new_filters;
+    this.setState({ filters: this.state.filters });
+    /*
     this.setState(state => {
       const updated_filters = new_filters
       return ({
@@ -82,6 +85,7 @@ export default class Search extends React.Component {
         loading: state.loading
       })
     })
+    */
     // this.setState({ filters: this.state.filters = new_filters });
     if (this.state.fetched_listings.length > 0) {
       this.update_display();
