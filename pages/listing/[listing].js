@@ -105,7 +105,7 @@ export default function Listing(props) {
             </div>
             <div className={styles.checkout}>
                 {status === "authenticated" ?
-                    <button onClick={() => { router.push({ pathname: '/listing/checkout', query: { listing: props.listing._id } }) }}>Checkout</button>
+                    <button onClick={() => { router.push({ pathname: '/listing/checkout', query: { listing: props.listing._id, checkin: router.query.checkin, checkout: router.query.checkout } }) }}>Checkout</button>
                     :
                     <div>
                         <p>You must have an account to rent a property</p>

@@ -4,6 +4,8 @@ import styles from './checkout.module.css';
 import { MongoClient } from 'mongodb';
 import { ObjectID } from 'bson';
 import { useSession } from 'next-auth/react';
+import React, { useState } from 'react';
+
 
 export async function getServerSideProps(ctx) {
     const client = await MongoClient.connect(process.env.MONGODB_URI);
@@ -38,6 +40,13 @@ export default function Checkout(props) {
     const id = router.query.listing;
     const { data: session, status } = useSession();
 
+    const [checkin, setCheckin] = useState(router.query.checkin);
+    const [checkout, setCheckout] = useState(router.query.checkout);
+    const [loading, setLoading] = useState(false);
+
+    const d = new Date();
+    const today = d.toISOString().split("T")[0];
+
     const cancelButton = async (e) => {
         e.preventDefault();
         router.push('/listing/' + id);
@@ -45,6 +54,8 @@ export default function Checkout(props) {
 
     const checkoutButton = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
 
         const res = await fetch('/api/listings/checkout', {
             method: "POST",
@@ -59,22 +70,40 @@ export default function Checkout(props) {
         router.push("/dashboard");
     }
 
+    const calculateDays = (e) => {
+        let check_in = new Date(checkin);
+        let check_out = new Date(checkout);
+
+        let days = (check_out.getTime() - check_in.getTime()) / (1000 * 3600 * 24);
+
+        return days + 1;
+    }
+
+    console.log(props);
+
     return (
         <div>
             <Link href={{ pathname: '/listing/' + id }}><a className={styles.back}>Back</a></Link>
             <h1 className={styles.title}>Checkout</h1>
             <h1 className={styles.title}>Confirm details</h1>
+            <p className={styles.price_per_day}>Renting {props.listing.name}</p>
             <form className={styles.form_container}>
                 <div className={styles.form_element_wrapper}>
                     <div className={styles.form_element}>
                         <label>Check in</label>
-                        <input type="date" value="2004-01-01" readOnly />
+                        <input type="date" value={checkin} min={today} onChange={ (e) => {
+                            setCheckin(e.target.value);
+                        }} />
                     </div>
                     <div className={styles.form_element}>
                         <label>Check out</label>
-                        <input type="date" value="2004-02-02" readOnly />
+                        <input type="date" value={checkout} min={checkin} onChange={ (e) => {
+                            setCheckout(e.target.value);
+                        }} />
                     </div>
                 </div>
+                <p className={styles.price_per_day}>Price per day: ${props.listing.price}</p>
+                <p className={styles.price_per_day}>Total price: ${props.listing.price * calculateDays()}</p>
             </form>
             <h1 className={styles.title}>Enter Information</h1>
             <form className={styles.form_container}>
@@ -101,6 +130,20 @@ export default function Checkout(props) {
                     <button onClick={checkoutButton}>Checkout</button>
                 </div>
             </form>
+
+            { loading ?
+                <div className="loading">
+                    <p>Loading</p>
+                    <div className="lds_ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                :
+                <div></div>
+            }
         </div>
     );
 }
