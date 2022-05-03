@@ -54,3 +54,7 @@
 .buttons button {
     margin-right: 32px;
 }
+
+.price_per_day {
+    text-align: center;
+}
