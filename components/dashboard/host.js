@@ -19,6 +19,7 @@ function AddListingModal(props, open, close) {
     const [imageUrl, setImageUrl] = useState("");
     const [address, setAddress] = useState("");
     const [price, setPrice] = useState(0);
+    const [description, setDescription] = useState("");
     const [error, setError] = useState("");
 
     const addListing = () => {
@@ -30,6 +31,7 @@ function AddListingModal(props, open, close) {
         search_params.append('image_url', imageUrl);
         search_params.append('address', address);
         search_params.append('price', price);
+        search_params.append('description', description);
 
         const res = fetch('/api/dashboard/addListing?' + search_params.toString(), {
             method: 'GET'
@@ -95,6 +97,14 @@ function AddListingModal(props, open, close) {
                         <input type="number" name="price" id="price" min="0" onChange={e => {
                             const newPrice = e.target.value;
                             setPrice(newPrice);
+                        }} required />
+                    </div>
+
+                    <div className={styles.input_group}>
+                        <label htmlFor="description" className={styles.label}>Description</label>
+                        <input type="text" name="description" id="description" onChange={e => {
+                            const newDescription = e.target.value;
+                            setDescription(newDescription);
                         }} required />
                     </div>
                 </form>

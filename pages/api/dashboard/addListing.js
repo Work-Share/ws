@@ -16,7 +16,8 @@ export default async function handler(req, res) {
         address: query.address,
         rating: 0,
         price: query.price,
-        amenities: []
+        amenities: [],
+        description: query.description
         // amenities: req.query.amenities
     })
 
