@@ -47,6 +47,13 @@ export default function ListedPropertiesCard(props, name, img_url, id) {
 }
 
 export function RentedPropertiesCard(props, name, img_url, id) {
+  const { data: session, status } = useSession();
+  var email
+
+  if (session) email = session.user.email
+
+  const router = useRouter()
+
   const [modalIsOpen, setIsOpen] = useState(false)
 
   function openModal() {
@@ -57,6 +64,25 @@ export function RentedPropertiesCard(props, name, img_url, id) {
     setIsOpen(false);
   }
 
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    }
+  };
+
+  const cancelRental = () => {
+    let search_params = new URLSearchParams();
+    search_params.append('email', email);
+    search_params.append('id', props.id);
+    fetch("/api/dashboard/cancelRental?" + search_params.toString())
+      .then(router.reload())
+  }
+
   return (
     <div className={styles.card_container}>
       <a>
@@ -65,12 +91,23 @@ export function RentedPropertiesCard(props, name, img_url, id) {
           </div>
           <div className={styles.card_info}>
             <p>{props.name}</p>
-            <button onClick={openModal}>Manage</button>
+            <button onClick={openModal}>Cancel</button>
           </div>
         </div>
       </a>
 
-      <ManageModal open={modalIsOpen} close={closeModal} />
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Cancel"
+        style={customStyles}
+      >
+        <div>
+          <div>Are you sure you want to cancel the rental?</div>
+          <button style={{ margin: '0.2rem' }} onClick={cancelRental} >Yes</button>
+          <button onClick={closeModal}>No</button>
+        </div>
+      </Modal>
     </div>
   );
 }

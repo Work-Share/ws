@@ -98,7 +98,8 @@ function AddListingModal(props, open, close) {
                         }} required />
                     </div>
                 </form>
-                <div>
+
+                <div className={styles.button_container}>
                     <button><input type="button" value="Upload" onClick={addListing} className={styles.input} /></button>
                     <button><input type="button" value="Cancel" onClick={props.close} className={styles.input} /></button>
                 </div>
